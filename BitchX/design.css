@@ -1,0 +1,759 @@
+/* BitchX For Textual v1.0
+ *
+ * Some colors & framework borrowed from:
+ * https://github.com/ChrisKempson/Tomorrow-Theme
+ * https://github.com/chriskempson/base16
+ *
+ */
+
+/* Main */
+
+* {
+	margin: 0;
+	padding: 0;
+	font-size: 100%;
+	word-wrap: break-word;
+}
+
+body {
+	color: #FFFFFF;
+	height: 100%;
+	z-index: 100;
+	font-size: 12px;
+	overflow: hidden;
+	overflow-y: visible;
+	background-color: #000000; /* Black Background */
+	font-family: "EspressoMono-Regular", "Menlo";
+}
+
+#body_home {
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	z-index: 100;
+	max-height: 99.99%;
+	position: absolute;
+	opacity: 0; /* Set by JS */
+	-webkit-transition: opacity 0.8s linear;
+}
+
+body[viewtype=channel] div#body_home {
+	max-height: 96.5%;
+}
+
+.line {
+	padding: 2px 5px 2px 5px;
+	clear: both;
+}
+
+.sender {
+	cursor: pointer;
+	font-weight: 700;
+}
+
+body[dir=rtl] .sender {
+	display: inline-block;
+}
+
+/* Misc */
+
+#loading_screen {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -11px;
+	margin-left: -150px;
+	width: 300px;
+	height: 21px;
+	font-size: 18px;
+	background: #393939; /* Current Line */
+	border: 1px solid #373B41; /* Selection */
+	border-radius: 5px;
+	padding: 5px;
+	padding-left: 10px;
+	opacity: 1; /* Set by JS */
+	-webkit-transition: opacity 0.8s linear;
+	text-align: center;
+}
+
+.encryptionLock img {
+	float: right;
+	margin: 0;
+	padding: 0;
+	height: 11px;
+	margin-top: 2px;
+	padding-left: 10px;
+}
+
+/* Time */
+
+.time {
+	color: #393939; /* Dark Grey Timestamps */
+	white-space: nowrap;
+}
+
+body[dir=rtl] .time {
+	padding-left: 0.4em;
+	display: inline-block;
+}
+
+/* @group Links */
+
+a {
+	color: #cecece; /* Off-white Link */
+	border-color: #cecece; /* Off-white Darker */
+	text-decoration: none;
+	border-bottom: dotted 1px;
+}
+
+a:hover {
+	color: #ffffff; /* White Hover Link */
+	border-color: #ffffff; /* White Hover Link */
+}
+
+/* @group Topic Bar */
+
+#topic_bar {
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 400;
+	opacity: 0; /* Set by JS */
+	color: #b8b8ff; /* BitchX Blue */
+	position: fixed;
+	padding: 2px 0.5em 3px;
+	background-color: rgba(0, 0, 205, 0.9);
+	-webkit-transition: opacity 0.8s linear;
+	-webkit-font-smoothing: subpixel-antialiased;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+/* Topic bar hover additions contributed with permission from the project:
+ * https://github.com/hbang/Simplified-Light-Modifications
+ */
+
+#topic_bar:hover {
+	overflow: visible;
+	white-space: normal;
+}
+
+/* @group Images */
+
+.inlineImageCell {
+	overflow: auto;
+	display: block;
+	margin-top: 5px;
+	margin-bottom: 2px;
+}
+
+.inlineImageCell .image {
+	display: inline-block;
+	float: left;
+	margin-right: 15px;
+	margin-left: 10px;
+	min-width: 40px;
+	max-width: 90%;
+}
+
+.inlineImageCell .closeButton {
+	cursor: pointer;
+	border-radius: 5px;
+	border: 2px solid #a1a1a1;
+	color: #a1a1a1;
+	display: inline-block;
+	line-height: 14px;
+	font-size: 15px;
+	font-family: "Helvetica Neue" !important;
+	text-indent: 7px;
+	width: 16px;
+	height: 16px;
+	float: left;
+	padding-right: 7px;
+	padding-left: 0px;
+}
+
+html[systemversion^="10.9"] .inlineImageCell .closeButton,
+html[systemversion^="10.8"] .inlineImageCell .closeButton {
+	line-height: 13px;
+}
+
+/* @group Separating History */
+
+div[id=mark] {
+	clear: both;
+	position: relative;
+	z-index: 295;
+	margin-top: -1px;
+	border-bottom: 1px dashed;
+	border-color: #353535; /* Dark Grey */
+	-webkit-transition: 0.2s linear;
+}
+
+#historic_messages {
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+	opacity: 0.6;
+}
+
+/* Alerts */
+
+.line[ltype*=ctcp],
+.line[ltype*=notice],
+.line[ltype*=wallops] {
+	color: #9d009d; /* Pink, but should change this later */
+	z-index: 191;
+	background-color: rgba(103, 0, 152, 0.2);
+	position: relative;
+}
+
+/* Selected User */
+
+.line[ltype*=privmsg]:not(.selectedUser),
+.line[ltype*=action]:not(.selectedUser) {
+	transition: background-color 0.5s;
+}
+
+.line.selectedUser[highlight=false] {
+	transition: background-color 0.5s;
+	z-index: 190;
+	position: relative;
+	background-color: rgba(0, 80, 255, 0.2) !important;
+}
+
+/* Privmsg */
+
+.line[ltype*=privmsg][highlight=true],
+.line[ltype*=action][highlight=true] {
+	z-index: 191;
+	position: relative;
+	font-weight: normal;
+	color: #e4ef00; /* Black and yellow black and yellow black and yellow black and yellow */
+	background-color: rgba(0, 0, 0, 0) !important; /* Black and yellow black and yellow black and yellow black and yellow */
+}
+
+div[ltype*=privmsg] .sender {
+	white-space: pre-wrap;
+}
+
+/* Action */
+
+div[ltype*=action] .sender:before {
+	content: "•";
+}
+
+body[dir=ltr] div[ltype*=action] .sender:before {
+	margin-right: 0.4em;
+}
+
+body[dir=rtl] div[ltype*=action] .sender:before {
+	margin-left: 0.4em;
+}
+
+div[ltype*=action] .sender:after {
+	content: "";
+}
+
+/* Invite, debug stuff */
+
+.line[ltype*=invite],
+.line[ltype*=debug],
+.line[ltype*=dcc-file-transfer],
+.line[ltype*=off-the-record-encryption-status] {
+	color: #4D4D4C;
+	z-index: 190;
+	background: rgba(55, 59, 65, 0.2);
+	position: relative;
+}
+
+/* OTR Encryption-status Message Event */
+.line[ltype*=off-the-record-encryption-status] .message {
+	color: #F2777A;
+	font-weight: 700;
+}
+
+/* Change nickname colors. Remove brackets in settings and let CSS handle it */
+/* Thanks to Alex@Freenode #textual for help */
+
+.sender[mtype*=myself]::before {
+	content: '<';
+	color: #b700b7;
+}
+
+.sender[mtype*=myself]::after {
+    content: '>';
+    color: #b700b7;
+}
+
+.sender[mtype*=normal]::before {
+	content: '<';
+	color: #0000ff;
+}
+
+.sender[mtype*=normal]::after {
+    content: '>';
+    color: #0000ff;
+}
+
+/* WHOIS Modifications */
+
+ div[command="337"] .message:before,
+ div[command="378"] .message:before,
+ div[command="317"] .message:before,
+ div[command="311"] .message:before,
+ div[command="312"] .message:before,
+ div[command="301"] .message:before,
+ div[command="313"] .message:before,
+ div[command="317"] .message:before,
+ div[command="314"] .message:before,
+ div[command="312"] .message:before,
+ div[command="301"] .message:before,
+ div[command="402"] .message:before,
+ div[command="378"] .message:before,
+ div[command="338"] .message:before,
+ div[command="307"] .message:before,
+ div[command="319"] .message:before,
+ div[command="312"] .message:before,
+ div[command="716"] .message:before,
+ div[command="310"] .message:before,
+ div[command="313"] .message:before,
+ div[command="310"] .message:before,
+ div[command="335"] .message:before,
+ div[command="671"] .message:before,
+ div[command="672"] .message:before,
+ div[command="317"] .message:before,
+ div[command="330"] .message:before,
+ div[command="320"] .message:before,
+ div[command="379"] .message:before,
+ div[command="301"] .message:before,
+ div[command="537"] .message:before,
+ div[command="401"] .message:before,
+ div[command="318"] .message:before,
+ div[command="369"] .message:before {
+ 	content: "|";
+ 	color: #3dbf3d; /* Green */
+ }
+
+ /* Whois Box Top  */
+ /* Thanks to Alex@Freenode #textual for help */
+
+ div[command="311"]::before {
+     color: #3dbf3d;
+     content: '------------------------------------ --------- - ---- ---- -- - - -- -'
+ }
+
+
+.line[command="337"],
+.line[command="378"],
+.line[command="317"],
+.line[command="312"],
+.line[command="301"],
+.line[command="313"],
+.line[command="317"],
+.line[command="314"],
+.line[command="312"],
+.line[command="301"],
+.line[command="402"],
+.line[command="311"],
+.line[command="378"],
+.line[command="338"],
+.line[command="307"],
+.line[command="319"],
+.line[command="312"],
+.line[command="716"],
+.line[command="310"],
+.line[command="313"],
+.line[command="310"],
+.line[command="335"],
+.line[command="671"],
+.line[command="672"],
+.line[command="317"],
+.line[command="330"],
+.line[command="320"],
+.line[command="379"],
+.line[command="301"],
+.line[command="537"],
+.line[command="401"],
+.line[command="318"],
+.line[command="369"] {
+	color: #ffffff;
+ 	padding-top: 1px;
+ 	padding-bottom: 1px;
+ }
+
+ /* MOTD
+  * 720, 721, 722 are used by ShadowIRCd for Oper MOTD.
+  * 372, 375, 376 are normal MOTD shared by several IRCds.
+  */
+
+.line[command="372"],
+.line[command="721"] {
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
+
+.line[command="375"],
+.line[command="720"] { /* Start */
+	padding-top: 2px;
+	padding-bottom: 3px;
+}
+
+.line[command="376"],
+.line[command="722"] { /* End */
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
+
+.line[command="372"] .message,
+.line[command="375"] .message,
+.line[command="376"] .message,
+.line[command="720"] .message,
+.line[command="721"] .message,
+.line[command="722"] .message {
+	font-family: "EspressoMono-Regular", "Menlo" !important;
+}
+
+/* General */
+
+.line[ltype*=join],
+.line[ltype*=part],
+.line[ltype*=quit],
+.line[ltype*=nick],
+.line[ltype*=mode],
+.line[ltype*=topic],
+.line[ltype*=website] {
+	color: #009d9d; /* Teal */
+}
+
+/* Special Events */
+.line[ltype*=kick],
+.line[ltype*=kill],
+.line[ltype*=mode][command=mode] {
+	color: #009d9d; /* Teal */
+}
+
+/* Event Indicators */
+
+div[ltype*=join] .message:before {
+	content: "-◦-";
+	color: #009d9d; /* Teal */
+}
+
+
+div[ltype*=kick] .message:before,
+div[ltype*=part] .message:before,
+div[ltype*=quit] .message:before {
+	content: "-◦-";
+	color: #009d9d;
+}
+
+div[ltype*=nick] .message:before {
+	content:"◦";
+	color: #66CCCC;
+}
+
+/* Own Messages */
+
+.sender[mtype*=myself] {
+	color: #ffffff; /* Was pink, now white with bracket fix */
+}
+
+div[mtype*=myself] {
+	background-color: rgba(0, 0, 0, 0); /* Black */
+}
+
+/* @group Nickname Colors (Leftovers) */
+
+.sender[mtype*=normal][colornumber='0'],
+.inline_nickname[colornumber='0'] {
+	color: #C82829;
+}
+
+.sender[mtype*=normal][colornumber='1'],
+.inline_nickname[colornumber='1'] {
+	color: #F5871F;
+}
+
+.sender[mtype*=normal][colornumber='2'],
+.inline_nickname[colornumber='2'] {
+	color: #EAB700;
+}
+
+.sender[mtype*=normal][colornumber='3'],
+.inline_nickname[colornumber='3'] {
+	color: #718C00;
+}
+
+.sender[mtype*=normal][colornumber='4'],
+.inline_nickname[colornumber='4'] {
+	color: #3E999F;
+}
+
+.sender[mtype*=normal][colornumber='5'],
+.inline_nickname[colornumber='5'] {
+	color: #8959A8;
+}
+
+.sender[mtype*=normal][colornumber='6'],
+.inline_nickname[colornumber='6'] {
+	color: #F2777A;
+}
+
+.sender[mtype*=normal][colornumber='7'],
+.inline_nickname[colornumber='7'] {
+	color: #F99157;
+}
+
+.sender[mtype*=normal][colornumber='8'],
+.inline_nickname[colornumber='8'] {
+	color: #FFCC66;
+}
+
+.sender[mtype*=normal][colornumber='9'],
+.inline_nickname[colornumber='9'] {
+	color: #99CC99;
+}
+
+.sender[mtype*=normal][colornumber='10'],
+.inline_nickname[colornumber='10'] {
+	color: #66CCCC;
+}
+
+.sender[mtype*=normal][colornumber='11'],
+.inline_nickname[colornumber='11'] {
+	color: #CC99CC;
+}
+
+.sender[mtype*=normal][colornumber='12'],
+.inline_nickname[colornumber='12'] {
+	color: #D54E53;
+}
+
+.sender[mtype*=normal][colornumber='13'],
+.inline_nickname[colornumber='13'] {
+	color: #E78C45;
+}
+
+.sender[mtype*=normal][colornumber='14'],
+.inline_nickname[colornumber='14'] {
+	color: #E7C547;
+}
+
+.sender[mtype*=normal][colornumber='15'],
+.inline_nickname[colornumber='15'] {
+	color: #B9CA4A;
+}
+
+.sender[mtype*=normal][colornumber='16'],
+.inline_nickname[colornumber='16'] {
+	color: #70C0B1;
+}
+
+.sender[mtype*=normal][colornumber='17'],
+.inline_nickname[colornumber='17'] {
+	color: #C397D8;
+}
+
+.sender[mtype*=normal][colornumber='18'],
+.inline_nickname[colornumber='18'] {
+	color: #AC4142;
+}
+
+.sender[mtype*=normal][colornumber='19'],
+.inline_nickname[colornumber='19'] {
+	color: #D28445;
+}
+
+.sender[mtype*=normal][colornumber='20'],
+.inline_nickname[colornumber='20'] {
+	color: #F4Bf75;
+}
+
+.sender[mtype*=normal][colornumber='21'],
+.inline_nickname[colornumber='21'] {
+	color: #90A959;
+}
+
+.sender[mtype*=normal][colornumber='22'],
+.inline_nickname[colornumber='22'] {
+	color: #75B5AA;
+}
+
+.sender[mtype*=normal][colornumber='23'],
+.inline_nickname[colornumber='23'] {
+	color: #AA750F;
+}
+
+.sender[mtype*=normal][colornumber='24'],
+.inline_nickname[colornumber='24'] {
+	color: #CC6666;
+}
+
+.sender[mtype*=normal][colornumber='25'],
+.inline_nickname[colornumber='25'] {
+	color: #DE935F;
+}
+
+.sender[mtype*=normal][colornumber='26'],
+.inline_nickname[colornumber='26'] {
+	color: #F0C674;
+}
+
+.sender[mtype*=normal][colornumber='27'],
+.inline_nickname[colornumber='27'] {
+	color: #B5BD68;
+}
+
+.sender[mtype*=normal][colornumber='28'],
+.inline_nickname[colornumber='28'] {
+	color: #8ABEB7;
+}
+
+.sender[mtype*=normal][colornumber='29'],
+.inline_nickname[colornumber='29'] {
+	color: #B294BB;
+}
+
+.sender[mtype*=normal][colornumber='30'],
+.inline_nickname[colornumber='30'] {
+	color: #BBDAFF;
+}
+
+/* mIRC Colors */
+
+/* Foreground Colors */
+
+.effect[color-number='0'] {
+	color: #EAEAEA !important;
+}
+
+.effect[color-number='1'] {
+	color: #515151 !important;
+}
+
+.effect[color-number='2'] {
+	color: #6699CC !important;
+}
+
+.effect[color-number='3'] {
+	color: #99CC99 !important;
+}
+
+.effect[color-number='4'] {
+	color: #F2777A !important;
+}
+
+.effect[color-number='5'] {
+	color: #FF9DA4 !important;
+}
+
+.effect[color-number='6'] {
+	color: #CC99CC !important;
+}
+
+.effect[color-number='7'] {
+	color: #F99157 !important;
+}
+
+.effect[color-number='8'] {
+	color: #FFCC66 !important;
+}
+
+.effect[color-number='9'] {
+	color: #B9CA4A !important;
+}
+
+.effect[color-number='10'] {
+	color: #66CCCC !important;
+}
+
+.effect[color-number='11'] {
+	color: #99FFFF !important;
+}
+
+.effect[color-number='12'] {
+	color: #7AA6DA !important;
+}
+
+.effect[color-number='13'] {
+	color: #C397D8 !important;
+}
+
+.effect[color-number='14'] {
+	color: #999999 !important;
+}
+
+.effect[color-number='15'] {
+	color: #CCCCCC !important;
+}
+
+/* Background Colors */
+
+.effect[bgcolor-number='0'] {
+	background-color: #EAEAEA !important;
+}
+
+.effect[bgcolor-number='1'] {
+	background-color: #515151 !important;
+}
+
+.effect[bgcolor-number='2'] {
+	background-color: #6699CC !important;
+}
+
+.effect[bgcolor-number='3'] {
+	background-color: #99CC99 !important;
+}
+
+.effect[bgcolor-number='4'] {
+	background-color: #F2777A !important;
+}
+
+.effect[bgcolor-number='5'] {
+	background-color: #FF9DA4 !important;
+}
+
+.effect[bgcolor-number='6'] {
+	background-color: #CC99CC !important;
+}
+
+.effect[bgcolor-number='7'] {
+	background-color: #F99157 !important;
+}
+
+.effect[bgcolor-number='8'] {
+	background-color: #FFCC66 !important;
+}
+
+.effect[bgcolor-number='9'] {
+	background-color: #B9CA4A !important;
+}
+
+.effect[bgcolor-number='10'] {
+	background-color: #66CCCC !important;
+}
+
+.effect[bgcolor-number='11'] {
+	background-color: #99FFFF !important;
+}
+
+.effect[bgcolor-number='12'] {
+	background-color: #7AA6DA !important;
+}
+
+.effect[bgcolor-number='13'] {
+	background-color: #C397D8 !important;
+}
+
+.effect[bgcolor-number='14'] {
+	background-color: #999999 !important;
+}
+
+.effect[bgcolor-number='15'] {
+	background-color: #CCCCCC !important;
+}
+
+/* EOF */

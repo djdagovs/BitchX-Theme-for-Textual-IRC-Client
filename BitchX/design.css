@@ -1,4 +1,4 @@
-/* BitchX For Textual v1.0
+/* BitchX For Textual v1.2
  *
  * Some colors & framework borrowed from:
  * https://github.com/ChrisKempson/Tomorrow-Theme
@@ -67,7 +67,7 @@ body[dir=rtl] .sender {
 	width: 300px;
 	height: 21px;
 	font-size: 18px;
-	background: #393939; /* Current Line */
+	background: #000; /* Current Line */
 	border: 1px solid #373B41; /* Selection */
 	border-radius: 5px;
 	padding: 5px;
@@ -340,44 +340,244 @@ div[ltype*=action] .sender:after {
  /* Whois Box Top  */
  /* Thanks to Alex@Freenode #textual for help */
 
+ div[command="311"] .time {
+	display: none;
+	background-color: #000;
+ }
+
  div[command="311"]::before {
      color: #3dbf3d;
-     content: '------------------------------------ --------- - ---- ---- -- - - -- -'
+		 background-color: #000000; /* Black Background */
+     content: '.------------------------------------ --------- - ---- ---- -- - - -- -'
  }
 
 
-.line[command="337"],
-.line[command="378"],
-.line[command="317"],
-.line[command="312"],
-.line[command="301"],
-.line[command="313"],
-.line[command="317"],
-.line[command="314"],
-.line[command="312"],
-.line[command="301"],
-.line[command="402"],
-.line[command="311"],
-.line[command="378"],
-.line[command="338"],
-.line[command="307"],
-.line[command="319"],
-.line[command="312"],
-.line[command="716"],
-.line[command="310"],
-.line[command="313"],
-.line[command="310"],
-.line[command="335"],
-.line[command="671"],
-.line[command="672"],
-.line[command="317"],
-.line[command="330"],
-.line[command="320"],
-.line[command="379"],
-.line[command="301"],
-.line[command="537"],
-.line[command="401"],
-.line[command="318"],
+
+ div[command="337"] .time { display: none; }
+ div[command="378"] .time { display: none; }
+ div[command="317"] .time { display: none; }
+ div[command="312"] .time { display: none; }
+ div[command="301"] .time { display: none; }
+ div[command="313"] .time { display: none; }
+ div[command="317"] .time { display: none; }
+ div[command="314"] .time { display: none; }
+ div[command="312"] .time { display: none; }
+ div[command="301"] .time { display: none; }
+ div[command="402"] .time { display: none; }
+ div[command="311"] .time { display: none; }
+ div[command="378"] .time { display: none; }
+ div[command="338"] .time { display: none; }
+ div[command="307"] .time { display: none; }
+ div[command="319"] .time { display: none; }
+ div[command="312"] .time { display: none; }
+ div[command="716"] .time { display: none; }
+ div[command="310"] .time { display: none; }
+ div[command="313"] .time { display: none; }
+ div[command="310"] .time { display: none; }
+ div[command="335"] .time { display: none; }
+ div[command="671"] .time { display: none; }
+ div[command="672"] .time { display: none; }
+ div[command="317"] .time { display: none; }
+ div[command="330"] .time { display: none; }
+ div[command="320"] .time { display: none; }
+ div[command="379"] .time { display: none; }
+ div[command="301"] .time { display: none; }
+ div[command="537"] .time { display: none; }
+ div[command="401"] .time { display: none; }
+ div[command="318"] .time { display: none; }
+
+ .line[command="337"] {
+	 color: #ffffff;
+  background-color: #000;
+    padding-top: 1px;
+    padding-bottom: 1px;
+  }
+ .line[command="378"] {
+	 color: #ffffff;
+  background-color: #000;
+    padding-top: 1px;
+    padding-bottom: 1px;
+  }
+ .line[command="317"] {
+	 color: #ffffff;
+  background-color: #000;
+    padding-top: 1px;
+    padding-bottom: 1px;
+  }
+ .line[command="312"] {
+	 color: #ffffff;
+  background-color: #000;
+    padding-top: 1px;
+    padding-bottom: 1px;
+  }
+ .line[command="301"] {
+	 color: #ffffff;
+  background-color: #000;
+    padding-top: 1px;
+    padding-bottom: 1px;
+  }
+ .line[command="313"] {
+	 color: #ffffff;
+  background-color: #000;
+    padding-top: 1px;
+    padding-bottom: 1px;
+  }
+ .line[command="317"] {
+	 color: #ffffff;
+  background-color: #000;
+    padding-top: 1px;
+    padding-bottom: 1px;
+  }
+ .line[command="314"] {
+	 color: #ffffff;
+  background-color: #000;
+    padding-top: 1px;
+    padding-bottom: 1px;
+  }
+ .line[command="312"] {
+	 color: #ffffff;
+  background-color: #000;
+    padding-top: 1px;
+    padding-bottom: 1px;
+  }
+ .line[command="301"] {
+	 color: #ffffff;
+  background-color: #000;
+    padding-top: 1px;
+    padding-bottom: 1px;
+  }
+ .line[command="402"] {
+	 color: #ffffff;
+  background-color: #000;
+    padding-top: 1px;
+    padding-bottom: 1px;
+  }
+ .line[command="311"] {
+	 color: #ffffff;
+  background-color: #000;
+    padding-top: 1px;
+    padding-bottom: 1px;
+  }
+ .line[command="378"] {
+	 color: #ffffff;
+  background-color: #000;
+    padding-top: 1px;
+    padding-bottom: 1px;
+  }
+ .line[command="338"] {
+	 color: #ffffff;
+  background-color: #000;
+    padding-top: 1px;
+    padding-bottom: 1px;
+  }
+ .line[command="307"] {
+	 color: #ffffff;
+  background-color: #000;
+    padding-top: 1px;
+    padding-bottom: 1px;
+  }
+ .line[command="319"] {
+	 color: #ffffff;
+  background-color: #000;
+    padding-top: 1px;
+    padding-bottom: 1px;
+  }
+ .line[command="312"] {
+	 color: #ffffff;
+  background-color: #000;
+    padding-top: 1px;
+    padding-bottom: 1px;
+  }
+ .line[command="716"] {
+	 color: #ffffff;
+  background-color: #000;
+    padding-top: 1px;
+    padding-bottom: 1px;
+  }
+ .line[command="310"] {
+	 color: #ffffff;
+  background-color: #000;
+    padding-top: 1px;
+    padding-bottom: 1px;
+  }
+ .line[command="313"] {
+	 color: #ffffff;
+  background-color: #000;
+    padding-top: 1px;
+    padding-bottom: 1px;
+  }
+ .line[command="310"] {
+	 color: #ffffff;
+  background-color: #000;
+    padding-top: 1px;
+    padding-bottom: 1px;
+  }
+ .line[command="335"] {
+	 color: #ffffff;
+  background-color: #000;
+    padding-top: 1px;
+    padding-bottom: 1px;
+  }
+ .line[command="671"] {
+	 color: #ffffff;
+  background-color: #000;
+    padding-top: 1px;
+    padding-bottom: 1px;
+  }
+ .line[command="672"] {
+	 color: #ffffff;
+  background-color: #000;
+    padding-top: 1px;
+    padding-bottom: 1px;
+  }
+ .line[command="317"] {
+	 color: #ffffff;
+  background-color: #000;
+    padding-top: 1px;
+    padding-bottom: 1px;
+  }
+ .line[command="330"] {
+	 color: #ffffff;
+  background-color: #000;
+    padding-top: 1px;
+    padding-bottom: 1px;
+  }
+ .line[command="320"] {
+	 color: #ffffff;
+  background-color: #000;
+    padding-top: 1px;
+    padding-bottom: 1px;
+  }
+ .line[command="379"] {
+	 color: #ffffff;
+  background-color: #000;
+    padding-top: 1px;
+    padding-bottom: 1px;
+  }
+ .line[command="301"] {
+	 color: #ffffff;
+  background-color: #000;
+    padding-top: 1px;
+    padding-bottom: 1px;
+  }
+ .line[command="537"] {
+	 	color: #ffffff;
+  background-color: #000;
+    padding-top: 1px;
+    padding-bottom: 1px;
+  }
+ .line[command="401"] {
+	 	color: #ffffff;
+  background-color: #000;
+    padding-top: 1px;
+    padding-bottom: 1px;
+  }
+ .line[command="318"] {
+	 	color: #ffffff;
+  background-color: #000;
+    padding-top: 1px;
+    padding-bottom: 1px;
+  }
 .line[command="369"] {
 	color: #ffffff;
  	padding-top: 1px;
